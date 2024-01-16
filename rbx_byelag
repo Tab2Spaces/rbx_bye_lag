@@ -1,0 +1,42 @@
+-- Configurations
+local lowQualityLevel = true -- Level01 - Level21
+local useVulkan = true -- if not Vulkan(6) then use OpenGL(4)
+
+-- Variables
+local players = game:GetService("Players")
+local localPlayer = Players.localPlayer
+
+local globalSettings = settings()
+local renderSettings = globalSettings.RenderSettings
+local lighting = game.workspace:GetService("Lighting")
+
+local function bye()
+    -- Enables EnableFRM (idk wat it will do)
+    renderSettings.EnableFRM = true
+    print("EnableFRM is set to true")
+    
+    
+    -- Setup QualityLevel To Level01 (lowest)
+    if lowQualityLevel then
+        renderSettings.QualityLevel = Enum.QualityLevel.Level01
+        print("QualityLevel is set to Lowest mode")
+    else
+        -- hehe
+        print("QualityLevel is set to Automatic mode")
+    end
+    
+    
+    -- Setup GraphicsMode (Vulkan or OpenGL)
+    if useVulkan then
+        renderSettings.GraphicsMode = Enum.GraphicsMode.Vulkan
+        print("Using Vulkan Graphics")
+    else
+        renderSettings.GraphicsMode = Enum.GraphicsMode.OpenGL
+        print("Using OpenGL Graphics")
+    end
+    
+    
+    -- Turn off GlobalShadows
+    lighting.GlobalShadows = false
+    print("GlobalShadows is set to false")
+end
